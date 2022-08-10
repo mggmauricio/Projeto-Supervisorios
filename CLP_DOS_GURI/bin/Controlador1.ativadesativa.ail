@@ -6,74 +6,82 @@ out_end reset_coil E0
 END_LINE
 
 (* line 0002 *)
+ld opened_contact TP0
+out_or_end reset_coil EP
+out_end set_coil E0
+
+END_LINE
+
+(* line 0003 *)
 ld opened_contact T12
 out_or_end reset_coil e1
 out_end set_coil e2
 
 END_LINE
 
-(* line 0003 *)
+(* line 0004 *)
 ld opened_contact %SX3
-out_end set_coil E0
+or closed_contact Botao_emergencia
+out_end set_coil EP
 END_LINE
 
-(* line 0004 *)
+(* line 0005 *)
 ld opened_contact t23
 out_or_end set_coil e3
 out_end reset_coil e2
 
 END_LINE
 
-(* line 0005 *)
+(* line 0006 *)
 ld opened_contact t34
 out_or_end set_coil e4
 out_end reset_coil e3
 
 END_LINE
 
-(* line 0006 *)
+(* line 0007 *)
 ld opened_contact T45
 out_or_end reset_coil e4
 out_end set_coil e5
 
 END_LINE
 
-(* line 0007 *)
+(* line 0008 *)
 ld opened_contact t56
 out_or_end reset_coil e5
 out_end set_coil e6
 
 END_LINE
 
-(* line 0008 *)
+(* line 0009 *)
 ld opened_contact t67
 out_or_end reset_coil e6
 out_end set_coil e7
 
 END_LINE
 
-(* line 0009 *)
+(* line 0010 *)
 ld opened_contact t78
 out_or_end set_coil e8
 out_end reset_coil e7
 
 END_LINE
 
-(* line 0010 *)
+(* line 0011 *)
 ld opened_contact t89
 out_or_end set_coil e9
 out_end reset_coil e8
 
 END_LINE
 
-(* line 0011 *)
+(* line 0012 *)
 ld opened_contact t910
 out_or_end reset_coil e9
 out_end set_coil e10
 
 END_LINE
 
-(* line 0012 *)
+(* line 0013 *)
 ld opened_contact T10
 out_or_end set_coil e11
 out_or_end reset_coil e10
@@ -81,133 +89,133 @@ out_end set_coil e1
 
 END_LINE
 
-(* line 0013 *)
+(* line 0014 *)
 ld opened_contact t1112
 out_or_end set_coil e12
 out_end reset_coil E11
 
 END_LINE
 
-(* line 0014 *)
+(* line 0015 *)
 ld opened_contact t1213
 out_or_end set_coil e13
 out_end reset_coil e12
 
 END_LINE
 
-(* line 0015 *)
+(* line 0016 *)
 ld opened_contact t1314
 out_or_end set_coil e14
 out_end reset_coil e13
 
 END_LINE
 
-(* line 0016 *)
+(* line 0017 *)
 ld opened_contact t1415
 out_or_end set_coil e15
 out_end reset_coil e14
 
 END_LINE
 
-(* line 0017 *)
+(* line 0018 *)
 ld opened_contact t1516
 out_or_end set_coil e16
 out_end reset_coil e15
 
 END_LINE
 
-(* line 0018 *)
+(* line 0019 *)
 ld opened_contact t1617
 out_or_end set_coil e17
 out_end reset_coil e16
 
 END_LINE
 
-(* line 0019 *)
+(* line 0020 *)
 ld opened_contact t1718
 out_or_end set_coil e18
 out_end reset_coil e17
 
 END_LINE
 
-(* line 0020 *)
+(* line 0021 *)
 ld opened_contact t1819
 out_or_end set_coil e19
 out_end reset_coil e18
 
 END_LINE
 
-(* line 0021 *)
+(* line 0022 *)
 ld opened_contact t1920
 out_or_end set_coil e20
 out_end reset_coil e19
 
 END_LINE
 
-(* line 0022 *)
+(* line 0023 *)
 ld opened_contact t2021
 out_or_end reset_coil e20
 out_end set_coil e21
 
 END_LINE
 
-(* line 0023 *)
+(* line 0024 *)
 ld opened_contact t2022
 out_or_end reset_coil e20
 out_end set_coil e22
 
 END_LINE
 
-(* line 0024 *)
+(* line 0025 *)
 ld opened_contact t2123
 out_or_end set_coil e23
 out_end reset_coil e21
 
 END_LINE
 
-(* line 0025 *)
+(* line 0026 *)
 ld opened_contact t2224
 out_or_end set_coil e24
 out_end reset_coil e22
 
 END_LINE
 
-(* line 0026 *)
+(* line 0027 *)
 ld opened_contact t2325
 out_or_end set_coil e25
 out_end reset_coil e23
 
 END_LINE
 
-(* line 0027 *)
+(* line 0028 *)
 ld opened_contact t2426
 out_or_end set_coil e26
 out_end reset_coil e24
 
 END_LINE
 
-(* line 0028 *)
+(* line 0029 *)
 ld opened_contact t2527
 out_or_end reset_coil e25
 out_end set_coil e27
 
 END_LINE
 
-(* line 0029 *)
+(* line 0030 *)
 ld opened_contact t2628
 out_or_end reset_coil e26
 out_end set_coil e28
 
 END_LINE
 
-(* line 0030 *)
+(* line 0031 *)
 ld opened_contact t2729
 out_or_end reset_coil e27
 out_end set_coil e29
 
 END_LINE
 
-(* line 0031 *)
+(* line 0032 *)
 ld opened_contact t30
 out_or_end set_coil e30
 out_or_end reset_coil e28
@@ -215,7 +223,7 @@ out_end reset_coil e29
 
 END_LINE
 
-(* line 0032 *)
+(* line 0033 *)
 ld opened_contact t301
 out_or_end reset_coil e30
 out_end set_coil e1
