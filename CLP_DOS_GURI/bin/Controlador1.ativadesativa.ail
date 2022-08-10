@@ -6,15 +6,15 @@ out_end reset_coil E0
 END_LINE
 
 (* line 0002 *)
-ld opened_contact %SX3
-out_end set_coil e0
-END_LINE
-
-(* line 0003 *)
 ld opened_contact T12
 out_or_end reset_coil e1
 out_end set_coil e2
 
+END_LINE
+
+(* line 0003 *)
+ld opened_contact %SX3
+out_end set_coil E0
 END_LINE
 
 (* line 0004 *)
@@ -75,16 +75,16 @@ END_LINE
 
 (* line 0012 *)
 ld opened_contact T10
-out_or_end set_coil e1
 out_or_end set_coil e11
-out_end reset_coil e10
+out_or_end reset_coil e10
+out_end set_coil e1
 
 END_LINE
 
 (* line 0013 *)
 ld opened_contact t1112
 out_or_end set_coil e12
-out_end reset_coil e11
+out_end reset_coil E11
 
 END_LINE
 

@@ -1,13 +1,11 @@
 Create Simulator Singleton
-load UserPGM C:\Users\mauri\Downloads\FMN\bin\Controlador1.bin
+load UserPGM C:\Users\mauri\Documents\GitHub\Projeto-Supervisorios\CLP_DOS_GURI\bin\Controlador1.bin
 Simulator: Initializing Memory
-Simulator: loading C:\Users\mauri\Downloads\FMN\bin\Controlador1.bin
+Simulator: loading C:\Users\mauri\Documents\GitHub\Projeto-Supervisorios\CLP_DOS_GURI\bin\Controlador1.bin
 Simulator: Starting Firmware
 Simulator: initializing Memory2
 Simulator: initSimulator
 Create TCPThread
 Setting Thread Priority to THREAD_PRIORITY_BELOW_NORMAL
-Communication server on port Communication server on port 9003 created.DTS\Binn\
-
-Communication server on port Communication server on port 9003 created.DTS\Binn\
-
+Communication server on port Communication server on port 9002ervi created.P_DOS_GUR
+Communication server on port Communication server on port 9002ervi created.P_DOS_GUR
