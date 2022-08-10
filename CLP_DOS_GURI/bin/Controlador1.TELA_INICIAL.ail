@@ -1,0 +1,13 @@
+(* line 0001 *)
+ld closed_contact Tempo
+function_block IEC61131.TON.TON_1 ( Tem_Inicial Cont_temp )
+out_and coil Tempo
+function_block IEC61131.CTU.CTU_1 ( Fim_de_tela Qtd_Telas_Inicial Pulso_Tela_Inic )
+out_end coil Fim_de_tela
+END_LINE
+
+(* line 0002 *)
+out_or_end coil MODBUS_B
+out_end coil MASTER_B
+END_LINE
+

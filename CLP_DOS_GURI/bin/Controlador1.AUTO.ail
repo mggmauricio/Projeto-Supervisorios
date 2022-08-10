@@ -1,0 +1,694 @@
+(* line 0001 *)
+function IEC61131.EQ ( ACTUAL_SCR UINT#16 )
+out_and coil AUX_TELA_AUTO
+and opened_contact BOTAO_LIGA
+out_end positive_transition_coil TRIGGER_INICIO_CICLO
+END_LINE
+
+(* line 0002 *)
+ld opened_contact AUX_TELA_AUTO
+out_end positive_transition_coil TRIGGER_TELA_AUTO
+END_LINE
+
+(* line 0003 *)
+ld opened_contact TRIGGER_INICIO_CICLO
+out_end set_coil INICIO_CICLO
+END_LINE
+
+(* line 0004 *)
+ld opened_contact INICIO_CICLO
+and opened_contact P200MS
+ld opened_contact AUX_TELA_AUTO
+and closed_contact INICIO_CICLO
+orld
+out_end coil LED2
+END_LINE
+
+(* line 0005 *)
+ld opened_contact BOTAO_DESLIGA
+and opened_contact INICIO_CICLO
+or opened_contact TRIGGER_TELA_AUTO
+out_end positive_transition_coil TRIGGER_DESL_CICLO
+END_LINE
+
+(* line 0006 *)
+ld opened_contact TRIGGER_DESL_CICLO
+or closed_contact BOTAO_EMERGENCIA
+out_end reset_coil INICIO_CICLO
+END_LINE
+
+(* line 0007 *)
+ld opened_contact SENTIDO_MOTOR
+and opened_contact INICIO_CICLO
+out_end positive_transition_coil RET_GARRA_POS_INICIAL
+END_LINE
+
+(* line 0008 *)
+ld opened_contact TRIGGER_INICIO_CICLO
+ld opened_contact TRIGGER_FECHA_GARRA_BRACO
+and opened_contact INICIO_CICLO
+orld
+out_end coil AUX_LIGA_ESTEIRA
+END_LINE
+
+(* line 0009 *)
+ld opened_contact SENSOR_CAPAC
+and opened_contact SENSOR_CAPAC
+and opened_contact INICIO_CICLO
+out_end coil AUX_AVANCA_TRANSF
+END_LINE
+
+(* line 0010 *)
+ld opened_contact ESTEIRA
+and opened_contact SENSOR_OPTICO
+or opened_contact AUX_RECUA_TRANSF
+and closed_contact AUX_RET_DESL_ESTEIRA
+and opened_contact INICIO_CICLO
+
+out_end coil AUX_RECUA_TRANSF
+END_LINE
+
+(* line 0011 *)
+ld opened_contact INICIO_CICLO
+and opened_contact AUX_RECUA_TRANSF
+function_block IEC61131.TON.TON_2 ( TIME#1.5S EFE_RET_DESL_ESTEIRA )
+out_end coil AUX_RET_DESL_ESTEIRA
+END_LINE
+
+(* line 0012 *)
+ld opened_contact INICIO_CICLO
+and opened_contact TRANSF_AVANCADO
+or opened_contact AUX_CIL_TRANSF_AVANCADO
+and closed_contact AUX_RECUA_MANIP_VERT
+and opened_contact INICIO_CICLO
+
+out_end coil AUX_CIL_TRANSF_AVANCADO
+END_LINE
+
+(* line 0013 *)
+ld opened_contact INICIO_CICLO
+ld opened_contact AUX_CIL_TRANSF_AVANCADO
+or opened_contact AUX_MANIP_VERT_MESA
+andld
+and opened_contact TRANSF_RECUADO
+out_end coil AUX_MANIP_VERT
+END_LINE
+
+(* line 0014 *)
+ld opened_contact AUX_MANIP_VERT
+and opened_contact MANIP_VERT_AVANCADO
+out_and positive_transition_coil TRIGGER_FECHA_GARRA
+out_end coil AUX_FECHA_GARRA
+END_LINE
+
+(* line 0015 *)
+ld opened_contact AUX_FECHA_GARRA
+and closed_contact SELO_AVANCO_MAN_HOR
+function_block IEC61131.TON.TON_3 ( TIME#200MS EFE_RET_RECUA_MANIP_VERT )
+out_end coil AUX_RECUA_MANIP_VERT
+END_LINE
+
+(* line 0016 *)
+ld opened_contact AUX_RECUA_MANIP_VERT
+or opened_contact SELO_RECUA_MANIP_VERT
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_FECHA_GARRA_BRACO
+
+out_end coil SELO_RECUA_MANIP_VERT
+END_LINE
+
+(* line 0017 *)
+ld opened_contact SELO_RECUA_MANIP_VERT
+and opened_contact MANIP_VERT_RECUADO
+and opened_contact INICIO_CICLO
+function_block IEC61131.TON.TON_4 ( TIME#50MS EFE_AVANCA_MANIP_HOR )
+out_end coil AUX_AVANCO_MAN_HOR
+END_LINE
+
+(* line 0018 *)
+ld opened_contact AUX_AVANCO_MAN_HOR
+or opened_contact SELO_AVANCO_MAN_HORI
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_FECHA_GARRA_BRACO
+
+out_and coil SELO_AVANCO_MAN_HORI
+out_end positive_transition_coil TRIGGER_AVANCO_MAN_HOR
+END_LINE
+
+(* line 0019 *)
+ld opened_contact AUX_AVANCO_MAN_HOR
+or opened_contact SELO_AVANCO_MAN_HOR
+and opened_contact INICIO_CICLO
+and closed_contact SENSOR_GARRA_MAN
+
+out_end coil SELO_AVANCO_MAN_HOR
+END_LINE
+
+(* line 0020 *)
+ld opened_contact %I1.1.3
+or opened_contact SELO_SENSOR_MESA
+and closed_contact TRIGGER_SELO_SENSOR_MESA
+out_end coil SELO_SENSOR_MESA
+END_LINE
+
+(* line 0021 *)
+ld opened_contact SELO_SENSOR_MESA
+function_block IEC61131.TON.TON_41 ( TIME#2S EFE_41 )
+out_end coil TRIGGER_SELO_SENSOR_MESA
+END_LINE
+
+(* line 0022 *)
+ld opened_contact SELO_AVANCO_MAN_HOR
+and opened_contact MANIP_HOR_AVANCADO
+and closed_contact SELO_SENSOR_MESA
+and closed_contact SENSOR_MESA
+out_end coil AUX_MESA_AUTO
+END_LINE
+
+(* line 0023 *)
+ld opened_contact SELO_AVANCO_MAN_HOR
+and opened_contact SENSOR_MESA
+and opened_contact MANIP_HOR_AVANCADO
+and opened_contact SELO_AVANCO_MAN_HOR
+and opened_contact INICIO_CICLO
+out_end positive_transition_coil TRIGGER_MANIP_VERT_MESA
+END_LINE
+
+(* line 0024 *)
+ld opened_contact TRIGGER_MANIP_VERT_MESA
+or opened_contact AUX_MANIP_VERT_MESA
+and opened_contact INICIO_CICLO
+and closed_contact AUX_ABRE_GARRA
+and opened_contact SENSOR_MESA
+
+out_end coil AUX_MANIP_VERT_MESA
+END_LINE
+
+(* line 0025 *)
+ld opened_contact AUX_MANIP_VERT_MESA
+or opened_contact SELO_PECA_POSICAO
+and opened_contact INICIO_CICLO
+and closed_contact RET_MANIP_CIL_HOR
+
+out_end coil SELO_PECA_POSICAO
+END_LINE
+
+(* line 0026 *)
+ld opened_contact SELO_PECA_POSICAO
+and opened_contact MANIP_VERT_AVANCADO
+out_end coil AUX_ABRE_GARRA
+END_LINE
+
+(* line 0027 *)
+ld opened_contact AUX_ABRE_GARRA
+or opened_contact PECA_NA_POSICAO
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_FECHA_GARRA_BRACO
+
+out_and coil PECA_NA_POSICAO
+function_block IEC61131.TON.TON_16 ( TIME#1S EFE_PECA_POSICAO )
+out_end coil AUX_HAB_CONT_PECA
+END_LINE
+
+(* line 0028 *)
+ld opened_contact AUX_ABRE_GARRA
+and opened_contact SENSOR_GARRA_MAN
+function_block IEC61131.TON.TON_12 ( TIME#300MS EFE_RET_CIL_VERT )
+out_end coil AUX_RETORNO_CILINDRO
+END_LINE
+
+(* line 0029 *)
+ld opened_contact AUX_RETORNO_CILINDRO
+or opened_contact SELO_RET_CIL_HOR
+and opened_contact INICIO_CICLO
+and closed_contact MESA
+
+out_end coil SELO_RET_CIL_HOR
+END_LINE
+
+(* line 0030 *)
+ld opened_contact TRIGGER_SENSOR_MESA
+and opened_contact AUX_HAB_CONT_PECA
+and opened_contact INICIO_CICLO
+function_block IEC61131.CTU.CTU_1 ( RESET_CTU_1 UINT#1 EFE_CONT_MESA )
+out_end positive_transition_coil CONTADOR_MESA
+END_LINE
+
+(* line 0031 *)
+ld opened_contact CONTADOR_MESA
+or opened_contact CONTAGEM_FINALIZADA
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_FECHA_GARRA_BRACO
+
+out_end coil CONTAGEM_FINALIZADA
+END_LINE
+
+(* line 0032 *)
+ld opened_contact TRIGGER_RECUA_CIL_DISP
+or opened_contact PECA_RETIFICADA
+and opened_contact CONTAGEM_FINALIZADA
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_RECUA_CIL_HOR_BRACO
+
+out_end coil PECA_RETIFICADA
+END_LINE
+
+(* line 0033 *)
+ld opened_contact SELO_RET_CIL_HOR
+or opened_contact POSICIONA_RETIFICA
+and closed_contact CONTADOR_MESA
+and opened_contact INICIO_CICLO
+and opened_contact MANIP_VERT_RECUADO
+
+out_end coil POSICIONA_RETIFICA
+END_LINE
+
+(* line 0034 *)
+ld opened_contact SELO_RET_CIL_HOR
+and opened_contact MANIP_VERT_RECUADO
+out_end coil RET_MANIP_CIL_HOR
+END_LINE
+
+(* line 0035 *)
+ld opened_contact CONTADOR_MESA
+and opened_contact INICIO_CICLO
+and closed_contact PECA_RETIFICADA
+and closed_contact FIM_DISPOSITIVO
+out_end positive_transition_coil TRIGGER_CIL_AV_DISPOS
+END_LINE
+
+(* line 0036 *)
+ld opened_contact CONTADOR_MESA
+or opened_contact TRIGGER_INICIO_CICLO
+or opened_contact TRIGGER_FECHA_GARRA_BRACO
+out_end coil RESET_CTU_1
+END_LINE
+
+(* line 0037 *)
+ld opened_contact %Q1.1.5
+ld opened_contact SENSOR_DISP_AV
+ld opened_contact AUX_LIGA_DISP
+and closed_contact DESL_DISPOSITIVO
+orld
+andld
+and opened_contact INICIO_CICLO
+and closed_contact PECA_RETIFICADA
+and closed_contact FIM_DISPOSITIVO
+
+function_block IEC61131.TON.TON_14 ( TIME#300MS EFE_CIL_LIGA_DISP )
+out_end coil AUX_LIGA_DISP
+END_LINE
+
+(* line 0038 *)
+ld opened_contact AUX_LIGA_DISP
+function_block IEC61131.TON.TON_15 ( TIME#1S200MS EFE_DISPOSITIVO )
+out_end positive_transition_coil DESL_DISPOSITIVO
+END_LINE
+
+(* line 0039 *)
+ld opened_contact DESL_DISPOSITIVO
+or opened_contact FIM_DISPOSITIVO
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_BAIXA_GARRA
+
+out_end coil FIM_DISPOSITIVO
+END_LINE
+
+(* line 0040 *)
+ld opened_contact DESL_DISPOSITIVO
+or opened_contact AUX_RECUA_CIL_DISP
+and closed_contact TRIGGER_RECUA_CIL_DISP
+and opened_contact INICIO_CICLO
+
+out_end coil AUX_RECUA_CIL_DISP
+END_LINE
+
+(* line 0041 *)
+ld opened_contact AUX_RECUA_CIL_DISP
+function_block IEC61131.TON.TON_40 ( TIME#1S500MS EFE_40 )
+out_end coil TRIGGER_RECUA_CIL_DISP
+END_LINE
+
+(* line 0042 *)
+ld opened_contact AUX_LIGA_DISP
+or opened_contact SELO_FECHA_GARRA_BRACO
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_FECHA_GARRA_BRACO
+
+out_end coil SELO_FECHA_GARRA_BRACO
+END_LINE
+
+(* line 0043 *)
+ld opened_contact SELO_FECHA_GARRA_BRACO
+and opened_contact AUX_HAB_CONT_PECA
+and opened_contact TRIGGER_SENSOR_MESA
+function_block IEC61131.CTU.CTU_2 ( RESET_CTU_2 INT#2 EFE_CT2 )
+out_end positive_transition_coil TRIGGER_BAIXA_GARRA
+END_LINE
+
+(* line 0044 *)
+ld opened_contact TRIGGER_RECUA_CIL_DISP
+or opened_contact TRIGGER_BAIXA_GARRA
+out_end coil RESET_CTU_2
+END_LINE
+
+(* line 0045 *)
+ld opened_contact AUX_HAB_CONT_PECA
+and opened_contact TRIGGER_RECUA_CIL_DISP
+or opened_contact SELO_HAB_CONT_PECA
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_BAIXA_GARRA
+
+out_end coil SELO_HAB_CONT_PECA
+END_LINE
+
+(* line 0046 *)
+ld opened_contact TRIGGER_BAIXA_GARRA
+or opened_contact SELO_FECHA_GARA
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_FECHA_GARRA_BRACO
+
+out_end coil SELO_FECHA_GARA
+END_LINE
+
+(* line 0047 *)
+ld opened_contact SELO_FECHA_GARA
+and opened_contact SENSOR_BRACO_VER_AV
+function_block IEC61131.TON.TON_17 ( TIME#300MS EFE_FECHA_GARRA )
+out_end positive_transition_coil TRIGGER_FECHA_GARRA_BRACO
+END_LINE
+
+(* line 0048 *)
+ld opened_contact TRIGGER_FECHA_GARRA_BRACO
+or opened_contact SELO_SOBE_BRACO
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_SOBE_BRACO_DESC
+
+out_end coil SELO_SOBE_BRACO
+END_LINE
+
+(* line 0049 *)
+ld opened_contact SELO_SOBE_BRACO
+and opened_contact SENSOR_BRACO_VER_AV
+function_block IEC61131.TON.TON_19 ( TIME#1S500MS EFE_SOBE_BRACO )
+out_end positive_transition_coil TRIGGER_SOBE_BRACO_DESC
+END_LINE
+
+(* line 0050 *)
+ld opened_contact TRIGGER_SOBE_BRACO_DESC
+or opened_contact SELO_AVANCA_BRACO_HOR
+and opened_contact INICIO_CICLO
+and closed_contact SELO_BAIXA_BRACO_BAL
+
+out_end coil SELO_AVANCA_BRACO_HOR
+END_LINE
+
+(* line 0051 *)
+ld opened_contact SELO_AVANCA_BRACO_HOR
+and opened_contact SENSOR_BRACO_VER_RE
+function_block IEC61131.TON.TON_20 ( TIME#300MS EFE_AVANCA_BRAC_HOR )
+out_end positive_transition_coil AVANCA_BRACO_DESC_HOR
+END_LINE
+
+(* line 0052 *)
+ld opened_contact AVANCA_BRACO_DESC_HOR
+or opened_contact AUX_AVANCA_BRACO_DESC_HOR
+and closed_contact SELO_BAIXA_BRACO_BAL
+and opened_contact INICIO_CICLO
+
+out_end coil AUX_AVANCA_BRACO_DESC_HOR
+END_LINE
+
+(* line 0053 *)
+ld opened_contact AUX_AVANCA_BRACO_DESC_HOR
+or opened_contact SELO_BAIXA_BRACO_BAL
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_BAIXA_BRACO_BAL
+and opened_contact SENSOR_BRACO_HOR_AV
+
+out_end coil SELO_BAIXA_BRACO_BAL
+END_LINE
+
+(* line 0054 *)
+ld opened_contact SELO_BAIXA_BRACO_BAL
+and opened_contact SENSOR_BRACO_HOR_AV
+function_block IEC61131.TON.TON_21 ( TIME#300MS EFE_BAIXA_BRACO_BAL )
+out_end positive_transition_coil TRIGGER_BAIXA_BRACO_BAL
+END_LINE
+
+(* line 0055 *)
+ld opened_contact TRIGGER_BAIXA_BRACO_BAL
+or opened_contact SELO_ABRE_GARRA_BAL
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_ABRE_GARRA_BRACO
+
+out_end coil SELO_ABRE_GARRA_BAL
+END_LINE
+
+(* line 0056 *)
+ld opened_contact SELO_ABRE_GARRA_BAL
+and opened_contact SENSOR_BRACO_VER_AV
+function_block IEC61131.TON.TON_22 ( TIME#300MS EFE_ABRE_GARA_BRACO )
+out_end positive_transition_coil TRIGGER_ABRE_GARRA_BRACO
+END_LINE
+
+(* line 0057 *)
+ld opened_contact TRIGGER_ABRE_GARRA_BRACO
+or opened_contact SELO_MEDIDA
+and opened_contact INICIO_CICLO
+and closed_contact TRIIGGER_FIM_MEDIDA
+
+out_end coil SELO_MEDIDA
+END_LINE
+
+(* line 0058 *)
+ld opened_contact SELO_MEDIDA
+function_block IEC61131.TON.TON_23 ( TIME#3S EFE_MEDIDA )
+out_end positive_transition_coil TRIIGGER_FIM_MEDIDA
+END_LINE
+
+(* line 0059 *)
+ld opened_contact SELO_MEDIDA
+and opened_contact SINAL_BALANCA
+or opened_contact PESO_AMOSTRA_PECA_OK
+and opened_contact INICIO_CICLO
+out_end coil PESO_AMOSTRA_PECA_OK
+END_LINE
+
+(* line 0060 *)
+ld opened_contact TRIIGGER_FIM_MEDIDA
+and closed_contact SINAL_BALANCA
+or opened_contact PESO_AMOSTRA_NAO_OK
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_RET_FIM_CICLO_NAO_OK
+
+out_end coil PESO_AMOSTRA_NAO_OK
+END_LINE
+
+(* line 0061 *)
+ld opened_contact TRIIGGER_FIM_MEDIDA
+or opened_contact SELO_FECHA_GARRA_BAL
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_FECHA_GARRA_BAL
+
+out_end coil SELO_FECHA_GARRA_BAL
+END_LINE
+
+(* line 0062 *)
+ld opened_contact SELO_FECHA_GARRA_BAL
+function_block IEC61131.TON.TON_24 ( TIME#300MS EFE_FECHA_GARRA_BAL )
+out_end positive_transition_coil TRIGGER_FECHA_GARRA_BAL
+END_LINE
+
+(* line 0063 *)
+ld opened_contact TRIGGER_FECHA_GARRA_BAL
+or opened_contact SELO_SOBE_BRACO_BAL
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_SOBE_BRACO_BAL
+
+out_end coil SELO_SOBE_BRACO_BAL
+END_LINE
+
+(* line 0064 *)
+ld opened_contact SELO_SOBE_BRACO_BAL
+function_block IEC61131.TON.TON_25 ( TIME#2S EFE_SOBE_BRACO_BAL )
+out_end positive_transition_coil TRIGGER_SOBE_BRACO_BAL
+END_LINE
+
+(* line 0065 *)
+ld opened_contact TRIGGER_SOBE_BRACO_BAL
+or opened_contact SELO_GIRO_GARRA_H
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_PESO_OK_GIRA_GARRA
+
+out_end coil SELO_GIRO_GARRA_H
+END_LINE
+
+(* line 0066 *)
+ld opened_contact SELO_GIRO_GARRA_H
+ld opened_contact PESO_AMOSTRA_PECA_OK
+or opened_contact PESO_AMOSTRA_NAO_OK
+andld
+function_block IEC61131.TON.TON_26 ( TIME#500MS EFE_GIRO_GARRA )
+out_and coil AUX_PESO_OK_GIRA_GARRA
+out_end positive_transition_coil TRIGGER_PESO_OK_GIRA_GARRA
+END_LINE
+
+(* line 0067 *)
+ld opened_contact FIM_GIRO_HOR
+or opened_contact SELO_DESCE_PECA_OK
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_DESCE_PECA_OK
+and closed_contact TRIGGER_FIM_CICLO_NAO_OK
+
+out_end coil SELO_DESCE_PECA_OK
+END_LINE
+
+(* line 0068 *)
+ld opened_contact SELO_DESCE_PECA_OK
+and closed_contact PESO_AMOSTRA_NAO_OK
+function_block IEC61131.TON.TON_8 ( TIME#500MS EFE_DESCE_PECA_OK )
+out_end positive_transition_coil TRIGGER_DESCE_PECA_OK
+END_LINE
+
+(* line 0069 *)
+ld opened_contact SELO_DESCE_PECA_OK
+and opened_contact PESO_AMOSTRA_NAO_OK
+function_block IEC61131.TON.TON_1 ( TIME#1S EFE_1 )
+out_end positive_transition_coil TRIGGER_RET_PECA_NAO_OK
+END_LINE
+
+(* line 0070 *)
+ld opened_contact TRIGGER_RET_PECA_NAO_OK
+or opened_contact SELO_DESCE_PECA_NAO_OK
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_DESCE_PECA_NAO_OK
+
+out_end coil SELO_DESCE_PECA_NAO_OK
+END_LINE
+
+(* line 0071 *)
+ld opened_contact SELO_DESCE_PECA_NAO_OK
+and opened_contact SENSOR_BRACO_HOR_RE
+function_block IEC61131.TON.TON_33 ( TIME#100MS EFE_33 )
+out_end positive_transition_coil TRIGGER_DESCE_PECA_NAO_OK
+END_LINE
+
+(* line 0072 *)
+ld opened_contact TRIGGER_DESCE_PECA_OK
+or opened_contact SELO_DESCARREGA_PECA_OK
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_ABRE_GARRA_PECA_OK
+and closed_contact PESO_AMOSTRA_NAO_OK
+
+out_end coil SELO_DESCARREGA_PECA_OK
+END_LINE
+
+(* line 0073 *)
+ld opened_contact TRIGGER_DESCE_PECA_NAO_OK
+or opened_contact SELO_DESCARREGA_PECA_NAO_OK
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_DESCARREGA_PECA_NAO_OK
+
+out_end coil SELO_DESCARREGA_PECA_NAO_OK
+END_LINE
+
+(* line 0074 *)
+ld opened_contact SELO_DESCARREGA_PECA_NAO_OK
+and opened_contact SENSOR_BRACO_HOR_RE
+function_block IEC61131.TON.TON_34 ( TIME#1S EFE_34 )
+out_end positive_transition_coil TRIGGER_DESCARREGA_PECA_NAO_OK
+END_LINE
+
+(* line 0075 *)
+ld opened_contact TRIGGER_DESCARREGA_PECA_NAO_OK
+or opened_contact SELO_SOBE_CIL_DESCARGA_NAO_OK
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_SOBE_CIL_DESCARGA
+
+out_end coil SELO_SOBE_CIL_DESCARGA_NAO_OK
+END_LINE
+
+(* line 0076 *)
+ld opened_contact SELO_SOBE_CIL_DESCARGA_NAO_OK
+function_block IEC61131.TON.TON_35 ( TIME#2S EFE_35 )
+out_end positive_transition_coil TRIGGER_SOBE_CIL_DESCARGA
+END_LINE
+
+(* line 0077 *)
+ld opened_contact TRIGGER_SOBE_CIL_DESCARGA
+or opened_contact SELO_FIM_CICLO_NAO_OK
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_FIM_CICLO_NAO_OK
+
+out_end coil SELO_FIM_CICLO_NAO_OK
+END_LINE
+
+(* line 0078 *)
+ld opened_contact SELO_FIM_CICLO_NAO_OK
+function_block IEC61131.TON.TON_36 ( TIME#500MS EFE_36 )
+out_end positive_transition_coil TRIGGER_FIM_CICLO_NAO_OK
+END_LINE
+
+(* line 0079 *)
+ld opened_contact SELO_DESCARREGA_PECA_OK
+and opened_contact SENSOR_BRACO_VER_AV
+function_block IEC61131.TON.TON_29 ( TIME#500MS EFE_29 )
+out_end positive_transition_coil TRIGGER_ABRE_GARRA_PECA_OK
+END_LINE
+
+(* line 0080 *)
+ld opened_contact TRIGGER_ABRE_GARRA_PECA_OK
+or opened_contact SELO_RETORNA_CIL_FIM_DE_CICLO
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_GIRA_GARRA_FIM_OK
+
+out_end coil SELO_RETORNA_CIL_FIM_DE_CICLO
+END_LINE
+
+(* line 0081 *)
+ld opened_contact SELO_RETORNA_CIL_FIM_DE_CICLO
+function_block IEC61131.TON.TON_30 ( TIME#1S EFE_30 )
+out_end positive_transition_coil TRIGGER_RETORNA_CIL_FIM_DE_CICLO
+END_LINE
+
+(* line 0082 *)
+ld opened_contact TRIGGER_RETORNA_CIL_FIM_DE_CICLO
+or opened_contact TRIGGER_FIM_CICLO_NAO_OK
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_DESL_GIRO
+and closed_contact FIM_GIRA_GARRA
+
+out_end positive_transition_coil TRIGGER_GIRA_GARRA_FIM_OK
+END_LINE
+
+(* line 0083 *)
+ld opened_contact TRIGGER_FIM_CICLO_NAO_OK
+or opened_contact SELO_RET_FIM_CICLO_NAO_OK
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_RET_FIM_CICLO_NAO_OK
+
+out_end coil SELO_RET_FIM_CICLO_NAO_OK
+END_LINE
+
+(* line 0084 *)
+ld opened_contact SELO_RET_FIM_CICLO_NAO_OK
+function_block IEC61131.TON.TON_38 ( TIME#2S EFE_38 )
+out_end positive_transition_coil TRIGGER_RET_FIM_CICLO_NAO_OK
+END_LINE
+
+(* line 0085 *)
+ld opened_contact TRIGGER_GIRA_GARRA_FIM_OK
+or opened_contact SELO_RECUA_CIL_HOR_BRACO
+and opened_contact INICIO_CICLO
+and closed_contact TRIGGER_RECUA_CIL_HOR_BRACO
+
+out_end coil SELO_RECUA_CIL_HOR_BRACO
+END_LINE
+
+(* line 0086 *)
+ld opened_contact SELO_RECUA_CIL_HOR_BRACO
+function_block IEC61131.TON.TON_31 ( TIME#1S500MS EFE_31 )
+out_end coil TRIGGER_RECUA_CIL_HOR_BRACO
+END_LINE
+

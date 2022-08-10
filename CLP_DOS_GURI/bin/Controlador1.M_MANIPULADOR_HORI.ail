@@ -1,0 +1,21 @@
+(* line 0001 *)
+function IEC61131.EQ ( ACTUAL_SCR UINT#4 )
+out_end coil AUX_TELA_MAN_H
+END_LINE
+
+(* line 0002 *)
+ld opened_contact AUX_TELA_MAN_H
+and opened_contact BOTAO_LIGA
+or opened_contact TRIGGER_AVANCO_MAN_HOR
+out_end set_coil %Q1.1.3
+END_LINE
+
+(* line 0003 *)
+ld opened_contact AUX_TELA_MAN_H
+and opened_contact BOTAO_DESLIGA
+or closed_contact BOTAO_EMERGENCIA
+or opened_contact TRIGGER_DESL_CICLO
+or opened_contact RET_MANIP_CIL_HOR
+out_end reset_coil %Q1.1.3
+END_LINE
+

@@ -1,0 +1,21 @@
+(* line 0001 *)
+function IEC61131.EQ ( ACTUAL_SCR UINT#8 )
+out_end coil TELA_SIM_CIL
+END_LINE
+
+(* line 0002 *)
+ld opened_contact TELA_SIM_CIL
+and opened_contact BOTAO_LIGA
+or opened_contact TRIGGER_CIL_AV_DISPOS
+out_end set_coil %Q1.1.5
+END_LINE
+
+(* line 0003 *)
+ld opened_contact TELA_SIM_CIL
+and opened_contact BOTAO_DESLIGA
+or closed_contact BOTAO_EMERGENCIA
+or opened_contact TRIGGER_RECUA_CIL_DISP
+or opened_contact TRIGGER_DESL_CICLO
+out_end reset_coil %Q1.1.5
+END_LINE
+

@@ -1,0 +1,107 @@
+(* line 0001 *)
+function IEC61131.EQ ( ACTUAL_SCR UINT#13 )
+out_and coil AUX_TELA_SEMI_AUTO
+and opened_contact BOTAO_LIGA
+out_end positive_transition_coil TRIGGER_INICIO_CICLO_SEMI
+END_LINE
+
+(* line 0002 *)
+ld opened_contact TRIGGER_INICIO_CICLO_SEMI
+out_end set_coil INICIO_CICLO_SEMI
+END_LINE
+
+(* line 0003 *)
+ld opened_contact INICIO_CICLO_SEMI
+and opened_contact P200MS
+ld opened_contact AUX_TELA_SEMI_AUTO
+and closed_contact INICIO_CICLO_SEMI
+orld
+and opened_contact FALSE
+out_end coil LED3
+END_LINE
+
+(* line 0004 *)
+ld opened_contact BOTAO_DESLIGA
+out_end positive_transition_coil TRIGGER_DESL_CICLO_SEMI
+END_LINE
+
+(* line 0005 *)
+ld opened_contact TRIGGER_DESL_CICLO_SEMI
+or closed_contact BOTAO_EMERGENCIA
+out_end reset_coil INICIO_CICLO_SEMI
+END_LINE
+
+(* line 0006 *)
+ld opened_contact TRIGGER_INICIO_CICLO_SEMI
+and opened_contact INICIO_CICLO_SEMI
+and opened_contact FALSE
+out_end coil AUX_LIGA_ESTEIRA_SEMI
+END_LINE
+
+(* line 0007 *)
+ld opened_contact ESTEIRA
+and opened_contact %I1.1.1
+and opened_contact INICIO_CICLO_SEMI
+out_end coil AUX_AVANCA_TRANSF_SEMI
+END_LINE
+
+(* line 0008 *)
+ld opened_contact %I1.1.6
+and opened_contact %I1.1.2
+and opened_contact INICIO_CICLO_SEMI
+out_end positive_transition_coil TRIGGER_DESL_ESTEIRA_SEMI
+END_LINE
+
+(* line 0009 *)
+ld opened_contact TRIGGER_DESL_ESTEIRA_SEMI
+or opened_contact AUX_RECUA_TRANSF_SEMI
+and opened_contact INICIO_CICLO_SEMI
+and closed_contact %I1.1.5
+
+out_end coil AUX_RECUA_TRANSF_SEMI
+END_LINE
+
+(* line 0010 *)
+ld opened_contact AUX_RECUA_TRANSF_SEMI
+and opened_contact BOTAO_LIGA
+out_end positive_transition_coil TRIGGER_RECUA_TRANSF_SEMI
+END_LINE
+
+(* line 0011 *)
+ld opened_contact TRIGGER_RECUA_TRANSF_SEMI
+or opened_contact AUX_AVANCA_MANIP_VER
+and opened_contact INICIO_CICLO_SEMI
+and closed_contact MANIP_VERT_AVANCADO
+
+out_end coil AUX_AVANCA_MANIP_VER
+END_LINE
+
+(* line 0012 *)
+ld opened_contact AUX_AVANCA_MANIP_VER
+and opened_contact BOTAO_LIGA
+and opened_contact INICIO_CICLO
+out_end positive_transition_coil TRIGGER_AVANCA_MANIP_VER_SEMI
+END_LINE
+
+(* line 0013 *)
+ld closed_contact INICIO_CICLO
+function_end IEC61131.MOVE ( UINT#0 STRING_MODO_AUTO )
+END_LINE
+
+(* line 0014 *)
+ld opened_contact TRIGGER_INICIO_CICLO
+function_end IEC61131.MOVE ( UINT#1 STRING_MODO_AUTO )
+END_LINE
+
+(* line 0015 *)
+ld opened_contact AUX_AVANCA_TRANSF
+out_and positive_transition_coil TRIGGER_AVANCA_TRANSF
+function_end IEC61131.MOVE ( UINT#2 STRING_MODO_AUTO )
+END_LINE
+
+(* line 0016 *)
+ld opened_contact AUX_RECUA_TRANSF
+out_and positive_transition_coil TRIGGER_RECUA_TRANSF
+function_end IEC61131.MOVE ( UINT#3 STRING_MODO_AUTO )
+END_LINE
+

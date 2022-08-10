@@ -1,0 +1,31 @@
+(* line 0001 *)
+function IEC61131.EQ ( ACTUAL_SCR UINT#7 )
+out_end coil TELA_MESA
+END_LINE
+
+(* line 0002 *)
+ld opened_contact %I1.1.3
+function_block IEC61131.TON.TON_18 ( TIME#40MS EFE_CONF_SENSOR )
+out_end positive_transition_coil TRIGGER_SENSOR_MESA
+END_LINE
+
+(* line 0003 *)
+ld opened_contact TELA_MESA
+and opened_contact BOTAO_LIGA
+or opened_contact AUX_MESA
+or opened_contact POSICIONA_RETIFICA
+or opened_contact TRIGGER_RECUA_CIL_DISP
+or opened_contact SELO_HAB_CONT_PECA
+and closed_contact BOTAO_DESLIGA
+and closed_contact TRIGGER_SENSOR_MESA
+and closed_contact TRIGGER_DESL_CICLO
+
+out_end coil AUX_MESA
+END_LINE
+
+(* line 0004 *)
+ld opened_contact AUX_MESA
+or opened_contact AUX_MESA_AUTO
+out_end coil MESA
+END_LINE
+

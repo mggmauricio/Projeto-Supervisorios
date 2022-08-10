@@ -1,0 +1,37 @@
+(* line 0001 *)
+function IEC61131.EQ ( ACTUAL_SCR UINT#2 )
+out_end coil AUX_TELA_ESTEIRA
+END_LINE
+
+(* line 0002 *)
+ld opened_contact AUX_TELA_ESTEIRA
+and opened_contact BOTAO_LIGA
+or opened_contact AUX_LIGA_ESTEIRA
+out_end set_coil ESTEIRA
+END_LINE
+
+(* line 0003 *)
+ld opened_contact AUX_TELA_ESTEIRA
+and opened_contact BOTAO_DESLIGA
+or closed_contact BOTAO_EMERGENCIA
+or opened_contact AUX_RET_DESL_ESTEIRA
+or opened_contact TRIGGER_DESL_CICLO
+or opened_contact TRIGGER_DESL_ESTEIRA_SEMI
+out_end reset_coil ESTEIRA
+END_LINE
+
+(* line 0004 *)
+ld opened_contact AUX_TELA_ESTEIRA
+or opened_contact AUX_TELA_TRANSF
+or opened_contact AUX_TELA_MAN_H
+or opened_contact AUX_TELA_MAN_V
+or opened_contact TELA_GARRA
+or opened_contact TELA_MESA
+or opened_contact TELA_SIM_CIL
+or opened_contact TELA_SIM_DIS
+or opened_contact AUX_TELA_BRA_CIL_H
+or opened_contact AUX_TELA_BRA_CIL_V
+or opened_contact AUX_TELA_BRA_GARRA
+out_end coil LED1
+END_LINE
+

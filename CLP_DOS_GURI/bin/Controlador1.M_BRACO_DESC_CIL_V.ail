@@ -1,0 +1,27 @@
+(* line 0001 *)
+function IEC61131.EQ ( ACTUAL_SCR UINT#11 )
+out_end coil AUX_TELA_BRA_CIL_V
+END_LINE
+
+(* line 0002 *)
+ld opened_contact AUX_TELA_BRA_CIL_V
+and opened_contact BOTAO_LIGA
+or opened_contact TRIGGER_BAIXA_GARRA
+or opened_contact TRIGGER_BAIXA_BRACO_BAL
+or opened_contact TRIGGER_DESCE_PECA_OK
+or opened_contact TRIGGER_DESCE_PECA_NAO_OK
+out_end set_coil %Q1.1.6
+END_LINE
+
+(* line 0003 *)
+ld opened_contact AUX_TELA_BRA_CIL_V
+and opened_contact BOTAO_DESLIGA
+or closed_contact BOTAO_EMERGENCIA
+or opened_contact TRIGGER_DESL_CICLO
+or opened_contact TRIGGER_SOBE_BRACO_DESC
+or opened_contact TRIGGER_SOBE_BRACO_BAL
+or opened_contact TRIGGER_RETORNA_CIL_FIM_DE_CICLO
+or opened_contact TRIGGER_SOBE_CIL_DESCARGA
+out_end reset_coil %Q1.1.6
+END_LINE
+

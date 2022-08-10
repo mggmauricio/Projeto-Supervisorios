@@ -1,0 +1,41 @@
+(* line 0001 *)
+ld closed_contact BOTAO_EMERGENCIA
+out_end coil ALARME_EMERGENCIA
+END_LINE
+
+(* line 0002 *)
+ld opened_contact %Q1.1.1
+function_block IEC61131.TON.TON_5 ( TIME#5S EFE_ALARM_TRANS_AV )
+out_end coil ALARM_TRANS_AV
+END_LINE
+
+(* line 0003 *)
+ld closed_contact %Q1.1.1
+function_block IEC61131.TON.TON_1 ( TIME#5S EFE_ALARM_TRANS_RE )
+out_end coil ALARM_TRANS_RE
+END_LINE
+
+(* line 0004 *)
+ld opened_contact %Q1.1.3
+function_block IEC61131.TON.TON_2 ( TIME#5S EFE_ALARM_MANIP_HOR_AV )
+out_end coil ALARM_MANIP_HOR_AV
+END_LINE
+
+(* line 0005 *)
+ld closed_contact %Q1.1.3
+function_block IEC61131.TON.TON_3 ( TIME#5S EFE_ALARM_MANIP_HOR_RE )
+out_end coil ALARM_MANIP_HOR_RE
+END_LINE
+
+(* line 0006 *)
+ld opened_contact %Q1.1.2
+function_block IEC61131.TON.TON_9 ( TIME#5S EFE_ALARM_MANIP_VERT_AV )
+out_end coil ALARM_MANIP_VER_AV
+END_LINE
+
+(* line 0007 *)
+ld closed_contact %Q1.1.2
+function_block IEC61131.TON.TON_10 ( TIME#5S EFE_ALARM_MANIP_VERT_RE )
+out_end coil ALARM_MANIP_VER_RE
+END_LINE
+

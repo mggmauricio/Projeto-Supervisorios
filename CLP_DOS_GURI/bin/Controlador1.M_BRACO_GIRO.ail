@@ -1,0 +1,82 @@
+(* line 0001 *)
+function IEC61131.EQ ( ACTUAL_SCR UINT#13 )
+out_end coil AUX_TELA_BRA_GIRO
+END_LINE
+
+(* line 0002 *)
+ld opened_contact SENSOR_GARRA
+out_end positive_transition_coil TRIGGER_SENSOR_GARRA
+END_LINE
+
+(* line 0003 *)
+ld opened_contact TRIGGER_SENSOR_GARRA
+or opened_contact AUX_SENSOR_GARRA
+and closed_contact F1
+and closed_contact BOTAO_DESLIGA
+and closed_contact TRUE_1SCAN
+and closed_contact TRIGGER_INICIO_CICLO
+and closed_contact TRIGGER_FIM_GIRO_HOR
+and closed_contact TRIGGER_FIM_GIRO_ANTI
+
+out_and coil AUX_SENSOR_GARRA
+function_block IEC61131.TON.TON_1 ( TIME#100MS EFE_39 )
+out_end coil RET_DESL_MOTOR_GARRA
+END_LINE
+
+(* line 0004 *)
+ld opened_contact AUX_TELA_BRA_GIRO
+and opened_contact BOTAO_LIGA
+or opened_contact LIGA_MOTOR_GIRO
+or opened_contact RET_GARRA_POS_INICIAL
+or opened_contact TRIGGER_PESO_OK_GIRA_GARRA
+or opened_contact TRIGGER_GIRA_GARRA_FIM_OK
+and closed_contact RET_DESL_MOTOR_GARRA
+and closed_contact FIM_GIRO_HOR
+and closed_contact ALARM_DESL_GIRO
+and closed_contact BOTAO_DESLIGA
+
+out_end coil LIGA_MOTOR_GIRO
+END_LINE
+
+(* line 0005 *)
+ld opened_contact LIGA_MOTOR_GIRO
+function_block IEC61131.TON.TON_42 ( TIME#4S EFE_42 )
+out_end coil ALARM_DESL_GIRO
+END_LINE
+
+(* line 0006 *)
+ld opened_contact LIGA_MOTOR_GIRO
+and opened_contact SENTIDO_MOTOR
+and opened_contact BOTAO_EMERGENCIA
+out_and coil BRACO_GIRO_HOR
+out_end negative_transition_coil TRIGGER_FIM_GIRO_HOR
+END_LINE
+
+(* line 0007 *)
+ld opened_contact LIGA_MOTOR_GIRO
+and closed_contact SENTIDO_MOTOR
+and opened_contact BOTAO_EMERGENCIA
+out_and coil BRACO_GIRO_ANTI
+out_end negative_transition_coil TRIGGER_FIM_GIRO_ANTI
+END_LINE
+
+(* line 0008 *)
+ld opened_contact TRIGGER_FIM_GIRO_ANTI
+out_end set_coil SENTIDO_MOTOR
+END_LINE
+
+(* line 0009 *)
+ld opened_contact TRIGGER_FIM_GIRO_HOR
+out_end reset_coil SENTIDO_MOTOR
+END_LINE
+
+(* line 0010 *)
+ld opened_contact TRIGGER_PESO_OK_GIRA_GARRA
+or opened_contact SELO_GIRA_GARRA
+and closed_contact RET_DESL_MOTOR_GARRA
+and opened_contact INICIO_CICLO
+
+out_and coil SELO_GIRA_GARRA
+out_end negative_transition_coil FIM_GIRO_HOR
+END_LINE
+
