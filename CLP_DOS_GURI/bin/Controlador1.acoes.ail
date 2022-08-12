@@ -114,21 +114,19 @@ END_LINE
 
 (* line 0017 *)
 ld opened_contact e14
-function_block IEC61131.TON.TON_45 ( time#1s t91 )
+function_block IEC61131.TON.TON_45 ( time#2s t91 )
 out_end coil aux_t91
 END_LINE
 
 (* line 0018 *)
-ld opened_contact e14
+ld opened_contact aux_t91
 out_end set_coil aux_mesa
 END_LINE
 
 (* line 0019 *)
 ld opened_contact e15
-function_block IEC61131.TON.TON_48 ( time#1s t11 )
-out_or_end coil aux_t9
-out_end set_coil aux_cil_v
-
+and opened_contact sensor_mesa
+out_end reset_coil aux_mesa
 END_LINE
 
 (* line 0020 *)
@@ -138,15 +136,13 @@ END_LINE
 
 (* line 0021 *)
 ld opened_contact e16
-and opened_contact sensor_mesa
-and opened_contact braco_cil_v
-out_end reset_coil aux_mesa
+function_block IEC61131.TON.TON_1 ( time#1s t39 )
+out_end set_coil aux_t10
 END_LINE
 
 (* line 0022 *)
-ld opened_contact e16
-function_block IEC61131.TON.TON_1 ( time#3s t39 )
-out_end coil aux_t10
+ld opened_contact aux_t10
+out_end set_coil aux_mesa
 END_LINE
 
 (* line 0023 *)
@@ -157,138 +153,98 @@ END_LINE
 
 (* line 0024 *)
 ld opened_contact e17
-out_end set_coil braco_garra
+and opened_contact sensor_mesa
+out_end reset_coil aux_mesa
 END_LINE
 
 (* line 0025 *)
 ld opened_contact e18
-out_end reset_coil aux_cil_v
+out_end set_coil aux_cil_v
 END_LINE
 
 (* line 0026 *)
 ld opened_contact e18
-function_block IEC61131.TON.TON_51 ( time#2s t51 )
+function_block IEC61131.TON.TON_51 ( time#3s t51 )
 out_end coil aux_t12
 END_LINE
 
 (* line 0027 *)
 ld opened_contact e19
-out_end set_coil braco_cil_h
+out_end set_coil braco_garra
 END_LINE
 
 (* line 0028 *)
 ld opened_contact e19
-function_block IEC61131.TON.TON_52 ( time#3s t52 )
+function_block IEC61131.TON.TON_52 ( time#1.5s t52 )
 out_end coil aux_t13
 END_LINE
 
 (* line 0029 *)
 ld opened_contact e20
-out_end set_coil aux_cil_v
+out_end reset_coil aux_cil_v
 END_LINE
 
 (* line 0030 *)
 ld opened_contact e20
-function_block IEC61131.TON.TON_53 ( time#5s t53 )
+function_block IEC61131.TON.TON_30 ( time#2s t53 )
 out_end coil aux_t14
 END_LINE
 
 (* line 0031 *)
 ld opened_contact e20
-function_block ATOS.TON_1S.TON_1S_1 ( time#1.5s delay )
-out_end reset_coil braco_garra
+function_block IEC61131.TON.TON_3 ( time#5s t98 )
+out_end coil aux_t15
 END_LINE
 
 (* line 0032 *)
-ld opened_contact e22
-or opened_contact e21
-out_end set_coil braco_garra
+ld opened_contact aux_t14
+out_end set_coil braco_cil_h
 END_LINE
 
 (* line 0033 *)
 ld opened_contact e21
-or opened_contact e22
-function_block IEC61131.TON.TON_54 ( time#1s balanca )
-out_end coil aux_t15
+out_end set_coil aux_cil_v
 END_LINE
 
 (* line 0034 *)
-ld opened_contact e23
-or opened_contact e24
-out_end reset_coil aux_cil_v
-END_LINE
-
-(* line 0035 *)
-ld opened_contact e23
-or opened_contact e24
-function_block IEC61131.TON.TON_55 ( time#1s delya )
-out_end coil aux_t16
-END_LINE
-
-(* line 0036 *)
-ld opened_contact e25
-or opened_contact e26
-out_end set_coil braco_giro_anti
-END_LINE
-
-(* line 0037 *)
-ld opened_contact e26
-or opened_contact e25
-function_block IEC61131.TON.TON_56 ( time#1s delaysdssfd )
-out_end coil aux_t17
-END_LINE
-
-(* line 0038 *)
-ld opened_contact e27
-or opened_contact e28
-out_end reset_coil braco_giro_anti
-END_LINE
-
-(* line 0039 *)
-ld opened_contact e27
-or opened_contact e28
-function_block IEC61131.TON.TON_57 ( time#2s t27 )
-out_end coil aux_t18
-END_LINE
-
-(* line 0040 *)
-ld opened_contact e29
-or opened_contact e28
+ld opened_contact e21
+function_block IEC61131.TON.TON_4 ( time#2s t16 )
 out_end reset_coil braco_garra
 END_LINE
 
-(* line 0041 *)
-ld opened_contact E26
-or opened_contact E31
-out_end reset_coil braco_cil_h
+(* line 0035 *)
+ld opened_contact e21
+function_block IEC61131.TON.TON_53 ( time#7s t17 )
+out_end coil aux_t17
 END_LINE
 
-(* line 0042 *)
-ld opened_contact e31
-or opened_contact e30
-out_end set_coil braco_giro_hor
+(* line 0036 *)
+ld opened_contact e22
+or opened_contact e23
+out_end set_coil braco_garra
 END_LINE
 
-(* line 0043 *)
-ld opened_contact e31
-or opened_contact e30
-function_block IEC61131.TON.TON_59 ( time#2s t32 )
-out_end coil aux_t32
+(* line 0037 *)
+ld opened_contact e22
+or opened_contact e23
+function_block IEC61131.TON.TON_54 ( time#1.5s t18 )
+out_end set_coil aux_t18
 END_LINE
 
-(* line 0044 *)
-ld opened_contact E29
-function_block IEC61131.TON.TON_58 ( time#3s tfinal )
-out_end coil aux_t29
+(* line 0038 *)
+ld opened_contact aux_t18
+out_end reset_coil aux_cil_v
 END_LINE
 
-(* line 0045 *)
-ld opened_contact e32
-out_end reset_coil braco_giro_hor
+(* line 0039 *)
+ld opened_contact e22
+or opened_contact e23
+function_block IEC61131.TON.TON_55 ( time#3s t19 )
+out_end coil aux_t19
 END_LINE
 
-(* line 0046 *)
-ld closed_contact botao_emergencia
-out_end reset_coil esteira
+(* line 0040 *)
+ld opened_contact e22
+function_block_end IEC61131.CTU.CTU_4 ( botao_emergencia int#40 ok )
 END_LINE
 

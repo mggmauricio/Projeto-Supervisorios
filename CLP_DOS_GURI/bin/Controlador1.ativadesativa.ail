@@ -21,6 +21,7 @@ END_LINE
 
 (* line 0004 *)
 ld opened_contact %SX3
+or closed_contact Botao_emergencia
 out_end set_coil EP
 END_LINE
 
