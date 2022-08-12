@@ -21,7 +21,6 @@ END_LINE
 
 (* line 0004 *)
 ld opened_contact %SX3
-or closed_contact Botao_emergencia
 out_end set_coil EP
 END_LINE
 
@@ -216,16 +215,36 @@ out_end set_coil e29
 END_LINE
 
 (* line 0032 *)
-ld opened_contact t30
-out_or_end set_coil e30
-out_or_end reset_coil e28
-out_end reset_coil e29
+ld opened_contact T2830
+out_or_end set_coil E30
+out_end reset_coil E28
 
 END_LINE
 
 (* line 0033 *)
-ld opened_contact t301
-out_or_end reset_coil e30
+ld opened_contact T2931
+out_or_end reset_coil E29
+out_end set_coil E31
+
+END_LINE
+
+(* line 0034 *)
+ld opened_contact T3032
+out_or_end set_coil E32
+out_end reset_coil E30
+
+END_LINE
+
+(* line 0035 *)
+ld opened_contact T3132
+out_or_end set_coil E32
+out_end reset_coil E31
+
+END_LINE
+
+(* line 0036 *)
+ld opened_contact T321
+out_or_end reset_coil e32
 out_end set_coil e1
 
 END_LINE
