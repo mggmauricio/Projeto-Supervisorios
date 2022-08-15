@@ -13,15 +13,16 @@ out_end set_coil E0
 END_LINE
 
 (* line 0003 *)
-ld opened_contact %SX3
-out_end set_coil EP
-END_LINE
-
-(* line 0004 *)
 ld opened_contact T12
 out_or_end reset_coil e1
 out_end set_coil e2
 
+END_LINE
+
+(* line 0004 *)
+ld opened_contact %SX3
+or closed_contact Botao_emergencia
+out_end set_coil EP
 END_LINE
 
 (* line 0005 *)

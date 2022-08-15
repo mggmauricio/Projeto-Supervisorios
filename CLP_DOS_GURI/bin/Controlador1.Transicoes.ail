@@ -161,7 +161,8 @@ END_LINE
 
 (* line 0026 *)
 ld opened_contact E25
-and closed_contact sensor_garra
+and opened_contact aux_t99
+and opened_contact sensor_garra
 out_end coil T2527
 END_LINE
 
@@ -185,7 +186,8 @@ END_LINE
 
 (* line 0030 *)
 ld opened_contact E26
-and closed_contact sensor_garra
+and opened_contact aux_t99
+and opened_contact sensor_garra
 out_end coil T2628
 END_LINE
 
@@ -204,14 +206,14 @@ END_LINE
 (* line 0033 *)
 ld opened_contact e30
 and opened_contact aux_t32
-and closed_contact braco_garra
+and opened_contact sensor_garra
 out_end coil T3032
 END_LINE
 
 (* line 0034 *)
 ld opened_contact E31
 and opened_contact aux_t32
-and closed_contact braco_garra
+and opened_contact sensor_garra
 out_end coil T3132
 END_LINE
 
