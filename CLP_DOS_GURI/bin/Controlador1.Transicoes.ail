@@ -87,33 +87,35 @@ END_LINE
 (* line 0015 *)
 ld opened_contact E13
 and opened_contact sensor_mesa
+and closed_contact braco_garra
+and closed_contact braco_cil_v
+and closed_contact braco_cil_h
 out_end coil T1314
 END_LINE
 
 (* line 0016 *)
 ld opened_contact E14
-and closed_contact sensor_mesa
+and opened_contact sensor_mesa
 and opened_contact aux_t91
 out_end coil T1415
 END_LINE
 
 (* line 0017 *)
 ld opened_contact E15
+and opened_contact aux_t9
 and opened_contact sensor_mesa
 out_end coil T1516
 END_LINE
 
 (* line 0018 *)
 ld opened_contact E16
-and closed_contact sensor_mesa
-and opened_contact aux_t10
+and opened_contact sensor_mesa
 out_end coil T1617
 END_LINE
 
 (* line 0019 *)
 ld opened_contact E17
 and opened_contact aux_t11
-and opened_contact sensor_mesa
 out_end coil T1718
 END_LINE
 
@@ -131,33 +133,91 @@ END_LINE
 
 (* line 0022 *)
 ld opened_contact E20
-and opened_contact aux_t15
+and closed_contact braco_garra
+and opened_contact Sinal_balanca
+and opened_contact aux_t14
 out_end coil T2021
 END_LINE
 
 (* line 0023 *)
-ld opened_contact E21
-and opened_contact sinal_balanca
-and opened_contact aux_t17
-out_end coil T2123
+ld opened_contact E20
+and closed_contact braco_garra
+and closed_contact SINAL_BALANCA
+and opened_contact aux_t14
+out_end coil T2022
 END_LINE
 
 (* line 0024 *)
 ld opened_contact E21
-and closed_contact sinal_balanca
-and opened_contact aux_t17
-out_end coil T2122
+and opened_contact aux_t15
+out_end coil T2123
 END_LINE
 
 (* line 0025 *)
-ld opened_contact E22
-and opened_contact aux_t19
-out_end coil T2224
+ld opened_contact E23
+and opened_contact aux_t16
+out_end coil T2325
 END_LINE
 
 (* line 0026 *)
-ld opened_contact E23
-and opened_contact aux_t19
-out_end coil T2325
+ld opened_contact E25
+and closed_contact sensor_garra
+out_end coil T2527
+END_LINE
+
+(* line 0027 *)
+ld opened_contact E27
+and opened_contact aux_t18
+out_end coil T2729
+END_LINE
+
+(* line 0028 *)
+ld opened_contact e22
+and opened_contact aux_t15
+out_end coil T2224
+END_LINE
+
+(* line 0029 *)
+ld opened_contact E24
+and opened_contact aux_t16
+out_end coil T2426
+END_LINE
+
+(* line 0030 *)
+ld opened_contact E26
+and closed_contact sensor_garra
+out_end coil T2628
+END_LINE
+
+(* line 0031 *)
+ld opened_contact E28
+and opened_contact AUX_T18
+out_end coil T2830
+END_LINE
+
+(* line 0032 *)
+ld opened_contact E29
+and opened_contact aux_t29
+out_end coil T2931
+END_LINE
+
+(* line 0033 *)
+ld opened_contact e30
+and opened_contact aux_t32
+and closed_contact braco_garra
+out_end coil T3032
+END_LINE
+
+(* line 0034 *)
+ld opened_contact E31
+and opened_contact aux_t32
+and closed_contact braco_garra
+out_end coil T3132
+END_LINE
+
+(* line 0035 *)
+ld opened_contact E32
+and closed_contact braco_cil_v
+out_end coil T321
 END_LINE
 
